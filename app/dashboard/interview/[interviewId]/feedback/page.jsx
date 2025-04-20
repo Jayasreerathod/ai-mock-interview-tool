@@ -44,32 +44,40 @@ function Feedback({ params: paramsPromise }) {
       ) : (
         <>
           <h2 className='text-3xl font-bold text-green-500'>Congratulations!!</h2>
-          <h2 className='font-bold font-2xl'>Here is your interview feedback</h2>
+          <h2 className='font-bold text-2xl'>Here is your interview feedback</h2>
+
           <h2 className='text-primary text-lg my-3'>
-            Your Overall Interview Rating: <strong>7/10</strong>
+            Your Overall Interview Rating: <strong>{(
+              feedbackList
+                .filter(item => !isNaN(parseFloat(item.rating)))
+                .reduce((sum, item) => sum + parseFloat(item.rating), 0) /
+              feedbackList.filter(item => !isNaN(parseFloat(item.rating))).length
+            ).toFixed(2)}/10</strong>
           </h2>
+
           <h2 className='text-sm text-gray-500'>
             Find below interview questions with correct answers, your answers, and feedback for improvement.
           </h2>
 
           {feedbackList.map((item, index) => (
             <Collapsible key={index} className='mt-7'>
-              <CollapsibleTrigger className='p-2 bg-black text-white rounded-lg flex justify-between my-2 text-left gap-7 w-full'>
-                {item.question} <ChevronsUpDown className='h-5 w-5 gap-7' />
+              <CollapsibleTrigger className='p-3 bg-black text-white rounded-lg flex justify-between items-center w-full'>
+                <span>{item.question}</span> 
+                <ChevronsUpDown className='h-5 w-5' />
               </CollapsibleTrigger>
               <CollapsibleContent>
-                <div className='flex flex-col gap-2'>
-                  <h2 className='text-green-500 p-2 border rounded-lg'>
+                <div className='flex flex-col gap-4'>
+                  <h2 className='text-green-500 p-3 border rounded-lg'>
                     <strong>Rating: </strong>{item.rating}
                   </h2>
-                  <h2 className='p-2 border rounded-lg bg-primary text-sm text-white'>
+                  <h2 className='p-3 border rounded-lg bg-primary text-sm text-white'>
                     <strong>Your Answer: </strong> {item.userAns}
                   </h2>
-                  <h2 className='p-2 border rounded-lg bg-primary text-sm text-white'>
+                  <h2 className='p-3 border rounded-lg bg-primary text-sm text-white'>
                     <strong>Correct Answer: </strong> {item.correctAns}
                   </h2>
                 </div>
-                <h2 className='p-2 border rounded-lg bg-primary text-sm text-white'>
+                <h2 className='p-3 border rounded-lg bg-primary text-sm text-white'>
                   <strong>Feedback: </strong> {item.feedback}
                 </h2>
               </CollapsibleContent>

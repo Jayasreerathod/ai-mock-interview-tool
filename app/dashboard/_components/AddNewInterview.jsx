@@ -84,14 +84,14 @@ function AddNewInterview() {
             <h2 className='text-primary text-lg text-center'> + Add New</h2>
         </div>
         <Dialog open={openDailog}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className=" bg-black max-w-2xl">
             <DialogHeader>
-            <DialogTitle className='font-bold  text-primary text-2xl'>Tell us more about your job interview</DialogTitle>
+            <DialogTitle className='font-bold text-white  text-2xl'>Tell us more about your job interview</DialogTitle>
             <DialogDescription asChild>
   <div>
     <form onSubmit={onSubmit}>
-      <div>
-        <h2 className="text-base font-semibold mt-4">
+      <div className='text-cyan-100'>
+        <h2 className=" text-sm   mt-4">
           Add Details about your job position/role, Job description and years of experience
         </h2>
         <div className='mt-7 my-3 '> 
